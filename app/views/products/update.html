@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Restful Products - Update Page</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Products App">
+    <!-- Latest compiled and minified CSS -->
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <style>
+      .action {
+        display:inline;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- update product page  heading -->
+    <div class="jumbotron">
+     <div class="container">
+        <p>Update a product </p>
+     </div>
+    </div><!-- End update product page heading -->
+
+    <div class="container">
+      <div class="row well col-sm-10 col-sm-offset-1" style="margin-top: 10px">
+
+        <form action="/products/update/{{product['id']}}" method="post">
+            <div class="form-group row">
+              <label for="name" class="col-xs-3 col-form-label">Name:</label>
+              <div class="col-xs-5 label">
+                <input class="form-control" type="text" name="name" value="{{ product['name'] }}" id="name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="description" class="col-xs-3 col-form-label">Description:</label>
+              <div class="col-xs-5 label">
+                <input class="form-control" type="text" name="description" value="{{ product['description'] }}" id="description">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="price" class="col-xs-3 col-form-label">Price:</label>
+              <div class="col-xs-5 label">
+                <input class="form-control" type="text" name="price" value="{{ product['price'] }}" id="price">
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                  <input type="submit" class="btn btn-sm btn-info" value="Update">
+                </div>
+            </div>
+
+        </form>  <!-- End update form -->
+
+      <div class="row">
+            <div class="col-sm-10">
+              <form action="/products/doAction/{{ product['id'] }}" method="post">
+                <u class="inline"><input type="submit" class="bare center-block action" name="action" value="Show"></u>
+                <u class="inline"><a href="/products/display"><strong><u class="action">Back</u></strong></a> </u>
+              </form>
+            </div>
+      </div>
+
+
+
+       </div>  <!-- End well -->
+    </div> <!-- End container row -->
+  </body>
+</html>

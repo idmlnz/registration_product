@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Restful Products - Show Page</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Products App">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <style>
+      .action{
+        padding-right:5px
+      }
+      u {
+        padding-right: 10px;
+      }
+      .action {
+        display:inline;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- show product heading -->
+    <div class="jumbotron">
+     <div class="container">
+        <p>Product</p>
+     </div>
+    </div><!-- End show product page heading -->
+
+    <div class="container">
+      <div class="row well col-sm-10 col-sm-offset-1" style="margin-top: 10px">
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <h4 id="valid">Product ID: {{ product['id'] }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <h5>Name: {{ product['name'] }}</h5>
+              <h5>Description: {{ product['description'] }}</h5>
+              <h5>Price: ${{ product['price'] }}</h5>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <form action="/products/doAction/{{ product['id'] }}" method="post">
+                <u class="inline"><input type="submit" class="bare center-block action" name="action" value="Edit"></u>
+                <u class="inline"><a href="/products/display"><strong><u class="action">Back</u></strong></a> </u>
+              </form>
+            </div>
+          </div>
+ </div>  <!-- End well -->
+    </div> <!-- End container row -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

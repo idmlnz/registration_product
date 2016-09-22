@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Login registration</title>
+  <meta name="description" content="Wiredwiki App">
+  <!-- Latest compiled and minified CSS -->
+   <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <style>
+    .label {
+      margin-top: -8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- product page heading -->
+  <div class="jumbotron">
+   <div class="container">
+      <p>Registration  Form for Product Page </p>
+   </div>
+  </div><!-- End product heading -->
+
+  <div class="container">
+    <div class="row">
+      <div class="well col-sm-6 col-sm-offset-3" style="margin-top: 100px">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <p> <font color="red">{{message}}</font></p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <!-- registration -->
+        <form action="/registers/add" method="post">
+            <div class="form-group row">
+              <label for="firstname" class="col-xs-3 col-form-label">First name:</label>
+              <div class="col-xs-9 label">
+                <input class="form-control" type="text" name="firstname" placeholder="Enter here" id="firstname">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="lastname" class="col-xs-3 col-form-label">Last name:</label>
+              <div class="col-xs-9 label">
+                <input class="form-control" type="text" name="lastname" placeholder="Enter here" id="lastname">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-xs-3 col-form-label">Email:</label>
+              <div class="col-xs-9 label">
+                <input class="form-control" type="text" name="email" placeholder="Enter here" id="email">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="password" class="col-xs-3 col-form-label">Password:</label>
+              <div class="col-xs-9 label">
+                <input class="form-control" type="password" name="password" placeholder="Enter here" id="password">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="confirm_password" class="col-xs-3 col-form-label">Confirm password:</label>
+              <div class="col-xs-9 label">
+                <input class="form-control" type="password" name="confirm_password" placeholder="Enter here" id="confirm_password">
+              </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                  <input type="submit" class="btn center-block btn-info" value="Register">
+                </div>
+            </div>
+        </form>  <!-- End registration form -->
+
+        <!-- login form -->
+        <div class="row">
+          <div class="col-sm-12">
+                <form action="/registers/login" method="post" class="form-inline">
+                  <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input class="form-control" type="text" name="login-email" placeholder="Enter here" id="login-email">
+                  </div>
+                  <div class="form-group">
+                    <label for="login-password">Password:</label>
+                    <input class="form-control" type="text" name="login-password" placeholder="Enter here" id="login-password">
+                  </div>
+                  <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                </form>
+          </div>
+        </div> <!-- End login form -->
+
+      </div> <!-- End class column -->
+    </div> <!-- End class row -->
+  </div> <!-- End container -->
+
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

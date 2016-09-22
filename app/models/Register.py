@@ -64,7 +64,7 @@ class Register(Model):
             #check if user already exists
             get_user_query = "SELECT * FROM user where email=\"{}\"".format(info['email'])
             user = self.db.query_db(get_user_query)
-            if not user:
+            if user:
                 errors.append("{} already exists! Try login-in".format(info['email']))
                 return {"status": False, "errors": errors}
 
@@ -77,7 +77,6 @@ class Register(Model):
                 'email': info['email'],
                 'password': pw_hash
             }
-            print "userdata: {}".format(userData)
             self.db.query_db(insertQuery, userData)
 
             get_user_query = "SELECT * FROM user ORDER BY id DESC LIMIT 1"

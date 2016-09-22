@@ -29,7 +29,7 @@ class Registers(Controller):
         flash(message, 'regis_errors')
       return self.load_view('registration/register.html', error=createStatus['errors'])
 
-    return redirect('/products/new')  # redirect to product
+    return redirect('/products/display')  # redirect to product
 
   def login(self):
     userInfo = {}

@@ -55,10 +55,19 @@ class Register(Model):
 
         if errors:
             return {"status": False, "errors": errors}
+
         else:
             # add user to DB
             #pw_hash = bcrypt.generate_password_hash(info['password'])
             pw_hash = info['password']
+
+            #check if user already exists
+            get_user_query = "SELECT * FROM user where email=\"{}\"".format(info['email'])
+            user = self.db.query_db(get_user_query)
+            if not user:
+                errors.append("{} already exists! Try login-in".format(info['email']))
+                return {"status": False, "errors": errors}
+
             insertQuery = "INSERT INTO user (firstname, lastname, email, password, created_at, updated_at) \
                 VALUES (:firstname, :lastname, :email, :password, NOW(), NOW())"
 
@@ -75,34 +84,3 @@ class Register(Model):
             user = self.db.query_db(get_user_query)
             return {"status": True, "user": user[0]}
 
-    def getProducts(self):
-        query = "SELECT * from product"
-        return self.db.query_db(query)
-
-
-    def getProductById(self, productId):
-        query = "SELECT * from product where id={}".format(productId)
-        return self.db.query_db(query)
-
-    def updateProductById(self, product, productId):
-        query = "UPDATE product SET name = :name, description = :description, price = :price, updated_at=NOW() "\
-          "WHERE id = {}".format(productId)
-        data = {
-            'name': product['name'],
-            'description': product['description'],
-            'price': product['price']
-        }
-        return self.db.query_db(query, data)
-
-    def addProduct(self, product):
-        query = "INSERT into product (name, description, price, created_at, updated_at ) values (:name, :description, :price, NOW(), NOW())"
-        data = {
-            'name': product['name'],
-            'description': product['description'],
-            'price': product['price'],
-        }
-        return self.db.query_db(query, data)
-
-    def deleteProductById(self, productId):
-        query = "DELETE FROM product WHERE id = {}".format(productId)
-        return self.db.query_db(query)
